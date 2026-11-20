@@ -1,3 +1,1 @@
-# quiatchon_mobprog
-
-A new Flutter project.
+I made the image dynamic in newsfeed_card.dart by using an if-statement to check if the image path is null. If the post has an image, the widget displays it normally, but if there is no image, the layout hides the space completely to avoid empty gaps. I also enhanced the card by using a proper avatar widget for the profile picture and turning the like and comment sections into reusable button widgets.
