@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:quiatchon_mobprog/constants.dart';
-import 'package:quiatchon_mobprog/widgets/custom_text.dart';
+import '../constants.dart';
+import 'custom_text.dart';
 
 class NewsfeedCard extends StatelessWidget {
   final String userName;
@@ -106,7 +105,7 @@ class NewsfeedCard extends StatelessWidget {
                     color: fbPrimary,
                   ),
                   label: CustomText(
-                    text: numOfLikes.toString(),
+                    text: (numOfLikes ?? 0).toString(),
                     fontSize: 12,
                     color: fbDarkPrimary,
                   ),

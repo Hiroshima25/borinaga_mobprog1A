@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:quiatchon_mobprog/constants.dart';
-import 'package:quiatchon_mobprog/screens/newsfeed_screen.dart';
-import 'package:quiatchon_mobprog/widgets/custom_text.dart';
+import '../constants.dart';
+import 'newsfeed_screen.dart';
+import 'notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,60 +13,71 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+
   final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFE9BCB9),
       appBar: AppBar(
+        backgroundColor: const Color(0xFFF8F0FB),
         shadowColor: fbTextColorWhite,
         elevation: 2,
-        title: CustomText(
-          text: 'Facebook',
-          fontSize: ScreenUtil().setSp(25),
-          color: fbPrimary,
-          fontFamily: 'Klavika',
-          fontWeight: FontWeight.w700,
+        title: Text(
+          'PEYSBOOK',
+          style: TextStyle(
+            fontSize: ScreenUtil().setSp(23),
+            color: fbPrimary,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
-
       body: PageView(
         controller: _pageController,
-        children: const <Widget>[
-          NewsfeedScreen(),
-        ],
         onPageChanged: (page) {
           setState(() {
             _selectedIndex = page;
           });
         },
+        children: const [
+          NewsfeedScreen(),
+          NotificationScreen(),
+        ],
       ),
-
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: const Color(0xFFF8F0FB),
         showUnselectedLabels: false,
         showSelectedLabels: false,
-        onTap: _onTappedBar,
+        currentIndex: _selectedIndex,
+        selectedItemColor: fbPrimary,
+        unselectedItemColor: Colors.grey.shade700,
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+          _pageController.jumpToPage(index);
+        },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
+            icon: Icon(Icons.notifications_outlined),
+            activeIcon: Icon(Icons.notifications),
             label: 'Notifications',
           ),
         ],
-        selectedItemColor: fbPrimary,
-        currentIndex: _selectedIndex,
       ),
     );
   }
 
-  void _onTappedBar(int value) {
-    setState(() {
-      _selectedIndex = value;
-    });
-
-    _pageController.jumpToPage(value);
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 }

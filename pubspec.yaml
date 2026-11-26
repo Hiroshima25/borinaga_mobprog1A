@@ -1,4 +1,4 @@
-name: quiatchon_mobprog
+name: borinaga_mobprog
 description: "A new Flutter project."
 publish_to: 'none'
 version: 0.1.0+1
@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   flutter_screenutil: ^5.9.3
 
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -18,7 +19,6 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/icons/
     - assets/images/
   fonts:
     - family: Klavika
